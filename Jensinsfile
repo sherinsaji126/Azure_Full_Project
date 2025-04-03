@@ -3,21 +3,21 @@ pipeline {
     environment {
         AZURE_CREDENTIALS_ID = 'azure-service-principal'
         RESOURCE_GROUP = 'rg-jenkins'
-        APP_SERVICE_NAME = 'webapijenkins8372648'
+        APP_SERVICE_NAME = 'webapijenkins8372648126' // must be unique
     }
 
     stages {
         stage('Checkout Code') {
             steps {
-                git branch: 'master', url: 'https://github.com/sherinsaji126/Azure_Full_Project.git'
+                git branch: 'master', url: 'https://github.com/sherinsaji126/Azure_Full_Project.git' 
             }
         }
 
         stage('Build') {
             steps {
-                bat 'dotnet restore'
+                bat 'dotnet restore' // it install all nuget packages which are present in dependicies packages in vs 
                 bat 'dotnet build --configuration Release'
-                bat 'dotnet publish -c Release -o ./publish'
+                bat 'dotnet publish -c Release -o ./publish' // it create a two folder bin(final output) and obj(temporary) 
             }
         }
 
